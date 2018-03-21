@@ -1,0 +1,23 @@
+# Base config
+# -------------------
+
+Host *
+   AddressFamily inet
+   GatewayPorts yes
+   PubkeyAuthentication yes
+   ServerAliveInterval 15
+   ServerAliveCountMax 20
+   ForwardAgent yes
+   ConnectTimeout 10
+
+   IdentityFile "~/.ssh/id_ed25519"
+   ControlMaster auto
+
+   # Socket file for persistant connections, https://man.openbsd.org/ssh_config.5#TOKENS
+   # %r - username
+   # %h - hostname
+   # %p - port
+   # %n - The original remote hostname, as given on the command line.
+   #      Use %n to fix use case where hostname is an alias, eg: git@github.com and git@fake-sub-domain.github.com
+   ControlPath  ~/.ssh/.sockets/%r@%h-%p__%n
+   ControlPersist 600  # 10 minutes

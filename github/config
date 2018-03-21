@@ -1,0 +1,12 @@
+
+# Config of of default user at github.com, in this case is user-1
+Host github.com
+    Hostname github.com
+    User git
+    IdentityFile "~/.ssh/github/keys/user-1__id_ed25519"
+
+# Config for user-2 at github.com
+Host user-2.github.com
+    Hostname github.com
+    User git
+    IdentityFile "~/.ssh/github/keys/user-2__id_ed25519"
