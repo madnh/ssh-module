@@ -1,0 +1,10 @@
+Host example.com
+   Hostname 127.0.0.1
+   User user1
+   IdentityFile ~/.ssh/example/keys/id_rsa
+
+
+Host example2.com
+   Hostname 127.0.0.1
+   User user2
+   IdentityFile ~/.ssh/example/keys/id_rsa
