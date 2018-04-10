@@ -1,16 +1,19 @@
 #!/usr/bin/env bash
 
+SCRIPT_DIR="$(realpath `dirname "$0"`)"
 CHECK_ICON=$'\x1B[32m\xE2\x9C\x94\x1B[0m'
+CONFIG_FILE="${SCRIPT_DIR}/config"
 
 echo -e "\nBuild config modules to config file\n"
 echo
-cat ./_base > ./config
+
+cat "${SCRIPT_DIR}/_base" > "${CONFIG_FILE}"
 
 echo -e "Import configs:\n"
 
 LOOP_INDEX=0
 
-for file in */ ; do
+for file in ${SCRIPT_DIR}/*/ ; do
     if [[ -d "$file" && ! -L "$file" ]]; then
         file=${file%*/}
 
@@ -18,14 +21,14 @@ for file in */ ; do
             LOOP_INDEX=$(expr $LOOP_INDEX + 1)
             echo -n "${LOOP_INDEX}. ${file}"
 
-            echo -e "\n\n" >> ./config
+            echo -e "\n\n" >> "${CONFIG_FILE}"
 
-            echo "#" >> ./config
-            echo "# ${file}" >> ./config
-            echo "#------" >> ./config
-            echo "" >> ./config
+            echo "#" >> "${CONFIG_FILE}"
+            echo "# ${file}" >> "${CONFIG_FILE}"
+            echo "#------" >> "${CONFIG_FILE}"
+            echo "" >> "${CONFIG_FILE}"
 
-            cat "${file}/config" >> ./config
+            cat "${file}/config" >> "${CONFIG_FILE}"
 
             echo -e "\x1B[32m \xE2\x9C\x94 \x1B[0m"
         fi

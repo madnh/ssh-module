@@ -13,9 +13,9 @@ then
     exit 0
 fi
 
-mkdir "${NAME}"
-mkdir "${NAME}/keys"
+SCRIPT_DIR="$(realpath `dirname "$0"`)"
+mkdir -p "${SCRIPT_DIR}/${NAME}/keys"
 
-touch "${NAME}/config"
+touch "${SCRIPT_DIR}/${NAME}/config"
 
 echo -e "\nCompleted\n"
